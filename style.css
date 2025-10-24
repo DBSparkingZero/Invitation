@@ -13,10 +13,19 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
-  background: url('images/aero-bg.png') center/cover no-repeat fixed;
   color: #00264d;
   overflow-x: hidden;
   position: relative;
+  min-height: 100vh;
+}
+
+/* ======= FIXED BACKGROUND (WORKS ON iPHONE BRAVE / SAFARI) ======= */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url('images/aero-bg.png') center/cover no-repeat;
+  z-index: -2;
 }
 
 /* Blue light overlay to simulate Aero glow */
@@ -66,19 +75,20 @@ body {
   border-radius: inherit;
 }
 
-/* Title bar */
+/* Title bar (Vista-style chrome) */
 .title-bar {
-  background: linear-gradient(180deg, rgba(170,220,255,0.8), rgba(80,150,240,0.65));
+  background: linear-gradient(180deg, rgba(190,230,255,0.9), rgba(80,150,240,0.7));
   color: #003366;
   font-weight: bold;
   padding: 0.6rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgba(255,255,255,0.3);
-  text-shadow: 0 1px 1px rgba(255,255,255,0.6);
-  box-shadow: inset 0 1px 1px rgba(255,255,255,0.8),
-              0 0 6px rgba(120,200,255,0.5);
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+  text-shadow: 0 1px 1px rgba(255,255,255,0.8);
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,0.9),
+    0 0 6px rgba(120,200,255,0.5);
 }
 
 .title-icon { margin-right: 0.5rem; }
@@ -91,7 +101,7 @@ body {
 
 /* Header special styling */
 .header .title-bar {
-  background: linear-gradient(180deg, rgba(200,240,255,0.85), rgba(90,160,255,0.7));
+  background: linear-gradient(180deg, rgba(210,240,255,0.9), rgba(100,170,255,0.8));
   font-size: 1.2rem;
 }
 .header .window-body {
@@ -119,8 +129,8 @@ button {
   position: relative;
   font-weight: bold;
   color: #003366;
-  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(190,230,255,0.65));
-  border: 1px solid rgba(255,255,255,0.7);
+  background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(190,230,255,0.7));
+  border: 1px solid rgba(255,255,255,0.8);
   box-shadow:
     0 4px 10px rgba(0,100,200,0.3),
     inset 0 1px 1px rgba(255,255,255,0.9);
@@ -172,6 +182,21 @@ button:hover::after { opacity: 1; }
 
 /* ========== MOBILE ========== */
 @media (max-width: 600px) {
-  .vista-window { width: 95%; }
-  .title-bar { font-size: 0.95rem; }
+  .vista-window {
+    width: 95%;
+    margin: 1rem auto;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(10px) saturate(160%);
+    -webkit-backdrop-filter: blur(10px) saturate(160%);
+  }
+
+  .title-bar {
+    font-size: 0.95rem;
+    padding: 0.6rem;
+  }
+
+  .window-body {
+    padding: 1rem;
+  }
 }
