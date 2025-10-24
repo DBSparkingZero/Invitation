@@ -1,0 +1,177 @@
+/* ======= FRUTIGER AERO / WINDOWS VISTA CLEAR GLASS ======= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", "Trebuchet MS", sans-serif;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background: url('images/aero-bg.png') center/cover no-repeat fixed;
+  color: #00264d;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Blue light overlay to simulate Aero glow */
+.vista-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    circle at top left,
+    rgba(120,200,255,0.25),
+    rgba(180,255,255,0.12),
+    rgba(0,60,120,0.2)
+  );
+  backdrop-filter: blur(6px) saturate(130%);
+  z-index: -1;
+}
+
+/* ========== WINDOW PANELS ========== */
+.vista-window {
+  width: 90%;
+  max-width: 650px;
+  margin: 1.5rem auto;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.45);
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  box-shadow:
+    0 8px 25px rgba(0,0,0,0.25),
+    inset 0 1px 1px rgba(255,255,255,0.6);
+  position: relative;
+}
+
+/* Gloss strip across top */
+.vista-window::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.55) 0%,
+    rgba(255,255,255,0.15) 40%,
+    rgba(255,255,255,0.02) 100%
+  );
+  mix-blend-mode: screen;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Title bar */
+.title-bar {
+  background: linear-gradient(180deg, rgba(170,220,255,0.8), rgba(80,150,240,0.65));
+  color: #003366;
+  font-weight: bold;
+  padding: 0.6rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  text-shadow: 0 1px 1px rgba(255,255,255,0.6);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.8),
+              0 0 6px rgba(120,200,255,0.5);
+}
+
+.title-icon { margin-right: 0.5rem; }
+
+.window-body {
+  padding: 1.3rem;
+  background: rgba(255,255,255,0.05);
+  border-top: 1px solid rgba(255,255,255,0.3);
+}
+
+/* Header special styling */
+.header .title-bar {
+  background: linear-gradient(180deg, rgba(200,240,255,0.85), rgba(90,160,255,0.7));
+  font-size: 1.2rem;
+}
+.header .window-body {
+  text-align: center;
+  font-size: 1.05rem;
+  color: #004c99;
+}
+
+/* Text */
+h1, h2 {
+  color: #004c99;
+  text-shadow: 0 1px 1px rgba(255,255,255,0.9);
+}
+ul { list-style: none; padding: 0; }
+ul li { padding: 0.4rem 0; }
+
+/* ========== BUTTON ========== */
+.button-wrap { text-align: center; margin-top: 1rem; }
+
+button {
+  all: unset;
+  cursor: pointer;
+  border-radius: 999vw;
+  padding: 0.8rem 1.8rem;
+  position: relative;
+  font-weight: bold;
+  color: #003366;
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(190,230,255,0.65));
+  border: 1px solid rgba(255,255,255,0.7);
+  box-shadow:
+    0 4px 10px rgba(0,100,200,0.3),
+    inset 0 1px 1px rgba(255,255,255,0.9);
+  transition: transform 0.25s ease, box-shadow 0.35s ease;
+}
+
+button:hover {
+  transform: scale(1.04);
+  box-shadow:
+    0 0 20px rgba(90,180,255,0.7),
+    inset 0 1px 2px rgba(255,255,255,1);
+}
+
+/* Blue inner glow */
+button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999vw;
+  background: radial-gradient(circle at 50% 40%, rgba(160,220,255,0.8), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+button:hover::after { opacity: 1; }
+
+/* ========== FOOTER ========== */
+.vista-footer {
+  text-align: center;
+  padding: 1rem;
+  background: linear-gradient(180deg, rgba(220,240,255,0.35), rgba(180,210,255,0.3));
+  border-top: 1px solid rgba(255,255,255,0.5);
+  backdrop-filter: blur(6px);
+  color: #004080;
+  font-size: 0.9rem;
+  margin-top: auto;
+}
+
+/* ========== MESSAGE ========== */
+#message {
+  margin-top: 1rem;
+  font-weight: bold;
+  color: #004b91;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+#message.visible { opacity: 1; }
+.hidden { display: none; }
+
+/* ========== MOBILE ========== */
+@media (max-width: 600px) {
+  .vista-window { width: 95%; }
+  .title-bar { font-size: 0.95rem; }
+}
